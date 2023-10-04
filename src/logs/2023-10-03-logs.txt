@@ -1,0 +1,16 @@
+====================ERROR 10/3/2023, 9:20:13 PM=========================
+req: POST /upload body: {} 
+res: status: undefined, {"name":"MulterError","message":"Unexpected field","code":"LIMIT_UNEXPECTED_FILE","field":"Avatar","storageErrors":[]} 
+
+====================ERROR 10/3/2023, 9:23:50 PM=========================
+req: POST /upload body: {} 
+res: status: undefined, {"name":"MulterError","message":"Unexpected field","code":"LIMIT_UNEXPECTED_FILE","field":"Avatar","storageErrors":[]} 
+
+====================ERROR 10/3/2023, 9:36:06 PM=========================
+req: POST /upload body: {} 
+res: status: undefined, {"name":"MulterError","message":"File too large","code":"LIMIT_FILE_SIZE","field":"avatar","storageErrors":[]} 
+
+====================ERROR 10/3/2023, 9:56:34 PM=========================
+req: POST /upload body: {} 
+res: status: 400, {"error":"File not accepted","message":"Only images files are allowed","storageErrors":[]} 
+

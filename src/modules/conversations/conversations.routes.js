@@ -1,5 +1,10 @@
 const { Router } = require("express");
-const { createConversation } = require("./conversations.controllers");
+const {
+  createConversation,
+  createGroupConversation,
+  getAllConversations,
+} = require("./conversations.controllers");
+const authenticate = require("../../middlewares/auth.middleware");
 
 const router = Router();
 
@@ -8,6 +13,9 @@ const router = Router();
 // obtener todas las conversaciones
 // obtener una conversacion con todos los mensajes
 
-router.post("/", createConversation);
+router.post("/", authenticate, createConversation);
+router.post("/group", authenticate, createGroupConversation);
+
+router.get("/:id", authenticate, getAllConversations);
 
 module.exports = router;
