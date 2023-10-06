@@ -1,0 +1,450 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "chat-API",
+      "contact": "fabryheredia10@gmail.com",
+      "version": "1.0"
+    },
+    "paths": {
+      "/api/v1/users": {
+        "post": {
+          "tags": [
+            "users"
+          ],
+          "summary": "register",
+          "operationId": "register",
+          "parameters": [],
+          "requestBody": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/registerrequest"
+                    },
+                    {
+                      "example": {
+                        "firstname": "Fabry",
+                        "lastname": "Heredia Prueba 6",
+                        "email": "themaskfh1000@gmail.com",
+                        "password": "fabry123@Fh"
+                      }
+                    }
+                  ]
+                },
+                "example": {
+                  "firstname": "Fabry",
+                  "lastname": "Heredia Prueba 6",
+                  "email": "themaskfh1000@gmail.com",
+                  "password": "fabry123@Fh"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "",
+              "headers": {}
+            }
+          },
+          "deprecated": false
+        },
+        "get": {
+          "tags": [
+            "users"
+          ],
+          "summary": "get all users",
+          "operationId": "getallusers",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "",
+              "headers": {}
+            }
+          },
+          "deprecated": false
+        }
+      },
+      "/api/v1/users/login": {
+        "post": {
+          "tags": [
+            "users"
+          ],
+          "summary": "login user",
+          "operationId": "loginuser",
+          "parameters": [],
+          "requestBody": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/loginuserrequest"
+                    },
+                    {
+                      "example": {
+                        "email": "themaskfh1000@gmail.com",
+                        "password": "fabry123@Fh"
+                      }
+                    }
+                  ]
+                },
+                "example": {
+                  "email": "themaskfh1000@gmail.com",
+                  "password": "fabry123@Fh"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "",
+              "headers": {}
+            }
+          },
+          "deprecated": false
+        }
+      },
+      "/api/v1/conversations": {
+        "post": {
+            "security": [{
+                "bearer": []
+              }],
+          "tags": [
+            "conversation"
+          ],
+          "summary": "create Conversation",
+          "operationId": "createConversation",
+          "parameters": [],
+          "requestBody": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/createConversationRequest"
+                    },
+                    {
+                      "example": {
+                        "userId": 1,
+                        "participantId": 2
+                      }
+                    }
+                  ]
+                },
+                "example": {
+                  "userId": 1,
+                  "participantId": 2
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "",
+              "headers": {}
+            }
+          },
+          "deprecated": false
+        }
+      },
+      "/api/v1/conversations/group": {
+        "post": {
+          "tags": [
+            "conversation"
+          ],
+          "summary": "create group conversations",
+          "operationId": "creategroupconversations",
+          "parameters": [],
+          "requestBody": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/creategroupconversationsrequest"
+                    },
+                    {
+                      "example": {
+                        "userId": 1,
+                        "participantsIds": [
+                          1,
+                          2,
+                          3
+                        ],
+                        "title": "examples"
+                      }
+                    }
+                  ]
+                },
+                "example": {
+                  "userId": 1,
+                  "participantsIds": [
+                    1,
+                    2,
+                    3
+                  ],
+                  "title": "examples"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "",
+              "headers": {}
+            }
+          },
+          "deprecated": false,
+          "security": [{
+            "bearer": []
+          }]
+        }
+      },
+      "/api/v1/conversations/{id}": {
+        "get": {
+          "tags": [
+            "conversation"
+          ],
+          "summary": "get all conversations by user",
+          "operationId": "getallconversationsbyuser",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "style": "simple",
+              "schema": {
+                "type": "integer",
+                "format": "int32",
+                "example": 1
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "headers": {}
+            }
+          },
+          "deprecated": false,
+          "security": [{
+            "bearer": []
+          }]
+        }
+      },
+      "/api/v1/messages/conversation/{id}": {
+        "get": {
+          "tags": [
+            "message"
+          ],
+          "summary": "create New message",
+          "operationId": "createNewmessage",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "",
+              "required": true,
+              "style": "simple",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "headers": {}
+            }
+          },
+          "deprecated": false
+        },
+        "post": {
+            "tags": [
+              "message"
+            ],
+            "summary": "getConversation",
+            "operationId": "getConversation",
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "description": "",
+                "required": true,
+                "style": "simple",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            ],
+            "requestBody": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/getConversationRequest"
+                      },
+                      {
+                        "example": {
+                          "content": "Mensaje de prueba 1",
+                          "senderId": 3
+                        }
+                      }
+                    ]
+                  },
+                  "example": {
+                    "content": "Mensaje de prueba 1",
+                    "senderId": 3
+                  }
+                }
+              },
+              "required": true
+            },
+            "responses": {
+              "200": {
+                "description": "",
+                "headers": {}
+              }
+          },
+          "deprecated": false,
+          "security": [{
+            "bearer": []
+          }]
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "registerrequest": {
+          "title": "registerrequest",
+          "required": [
+            "firstname",
+            "lastname",
+            "email",
+            "password"
+          ],
+          "type": "object",
+          "properties": {
+            "firstname": {
+              "type": "string"
+            },
+            "lastname": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            }
+          },
+          "example": {
+            "firstname": "Fabry",
+            "lastname": "Heredia Prueba 6",
+            "email": "themaskfh1000@gmail.com",
+            "password": "fabry123@Fh"
+          }
+        },
+        "loginuserrequest": {
+          "title": "loginuserrequest",
+          "required": [
+            "email",
+            "password"
+          ],
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            }
+          },
+          "example": {
+            "email": "themaskfh1000@gmail.com",
+            "password": "fabry123@Fh"
+          }
+        },
+        "createConversationRequest": {
+          "title": "createConversationRequest",
+          "required": [
+            "userId",
+            "participantId"
+          ],
+          "type": "object",
+          "properties": {
+            "userId": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "participantId": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "example": {
+            "userId": 1,
+            "participantId": 2
+          }
+        },
+        "creategroupconversationsrequest": {
+          "title": "creategroupconversationsrequest",
+          "required": [
+            "userId",
+            "participantsIds",
+            "title"
+          ],
+          "type": "object",
+          "properties": {
+            "userId": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "participantsIds": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "description": ""
+            },
+            "title": {
+              "type": "string"
+            }
+          },
+          "example": {
+            "userId": 1,
+            "participantsIds": [
+              1,
+              2,
+              3
+            ],
+            "title": "examples"
+          }
+        }
+      }
+    },
+    "tags": [
+      {
+        "name": "users"
+      },
+      {
+        "name": "conversation"
+      },
+      {
+        "name": "message"
+      }
+    ]
+  }

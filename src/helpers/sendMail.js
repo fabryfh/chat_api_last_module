@@ -25,6 +25,7 @@ const sendWelcomeEmail = async (email, data) => {
   const template = await getTemplate("../views/welcome/welcome-email.ejs", {
     ...data,
     token,
+    url: process.env.FRONT_URL,
   });
 
   // obtener las imagenes a adjuntar

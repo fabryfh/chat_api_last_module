@@ -17,18 +17,18 @@ router
   .route("/") // api/v1/users
   .get(authenticate, getAllUsers)
   .post(registerUserValidator, registerUser)
-  .get(async (req, res, next) => {
-    try {
-      const result = await User.findAll({
-        include: {
-          model: Participant,
-        },
-      });
-      res.json(result);
-    } catch (error) {
-      next(error);
-    }
-  });
+  // .get(async (req, res, next) => {
+  //   try {
+  //     const result = await User.findAll({
+  //       include: {
+  //         model: Participant,
+  //       },
+  //     });
+  //     res.json(result);
+  //   } catch (error) {
+  //     next(error);
+  //   }
+  // });
 
 router.put("/:id", authenticate, upload.single("avatar"), uploadAvatar);
 
