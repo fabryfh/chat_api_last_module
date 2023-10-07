@@ -8,7 +8,7 @@ const validateResult = (req, res, next) => {
     console.log(error);
     next({
       status: 400,
-      error: "Ivalid data",
+      error: "Invalid data",
       message: error.array().map((error) => error.msg),
     });
   }
